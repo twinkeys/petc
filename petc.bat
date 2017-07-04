@@ -1,5 +1,5 @@
 @echo off
-TITLE Press Enter to Continue
+TITLE Press Enter to Continue v.1.0
 color 0a
 :menu
 cls
