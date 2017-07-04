@@ -7,16 +7,16 @@ echo.
 echo Press Enter to Continue v.1.0
 echo.
 echo 1) Start
-echo 2) Info
-echo 3) Load Save
-echo 4) Exit
+echo 2) Load Save
+echo 3) Exit
 set /p f=
 
 if %f% == 1 goto setvar
-if %f% == 2 goto info
-if %f% == 3 goto load
-if %f% == 4 goto exit
+if %f% == 2 goto load
+if %f% == 3 goto exit
 goto menu
+
+::save/load system
 
 :load
 < save.sav (
@@ -52,6 +52,8 @@ echo Game Saved to save.sav
 pause >nul
 goto home
 
+::sets variables at beginning of game
+
 :setvar
 set level=1
 set money=50
@@ -77,6 +79,8 @@ echo Press a random button to continue...
 pause >nul
 goto home
 
+::main select screen of game
+
 :home
 cls
 echo.
@@ -99,6 +103,8 @@ if %f% == 3 goto save
 if %f% == 4 goto patchnotes
 if %f% == 5 goto exit
 goto home
+
+::dungeons
 
 :dungeonlist
 if %skill% == 0 goto noskill
@@ -193,6 +199,8 @@ echo I SAID IT WASN'T FINISHED YET, DIDN'T I?
 pause >nul
 goto home
 
+::all possibilities in a fight
+
 :nolvl
 cls
 echo.
@@ -275,6 +283,8 @@ echo.
 echo You have leveled up!
 pause >nul
 goto home
+
+::shop code
 
 :shop1
 cls
@@ -430,14 +440,6 @@ echo Still in development.
 echo.
 pause >nul
 goto home
-
-:info
-cls
-echo.
-echo WIP
-echo.
-pause
-goto menu
 
 :exit
 cls
