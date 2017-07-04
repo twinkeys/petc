@@ -1,5 +1,5 @@
 @echo off
-TITLE Press Enter to Continue v.1.0
+TITLE Press Enter to Continue
 color 0a
 :menu
 cls
@@ -239,7 +239,7 @@ cls
 echo.
 echo You ran like a bitch...
 pause >nul
-goto home
+goto monloss
 
 :victory
 cls
@@ -261,6 +261,11 @@ echo.
 echo You have been slain by %enemy%...
 pause >nul
 goto xploss
+
+:monloss
+set /a money=%money% - %enskill% / 2
+if %money% LSS 0 set /a money=0
+goto home
 
 :xpgain
 set /a enskill = %enskill% + 5
