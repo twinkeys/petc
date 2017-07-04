@@ -1,2 +1,2 @@
-# petc
-Repository for "Press Enter to Continue"
+# Press Enter To Continue
+Batch RPG for Windows.
