@@ -1,10 +1,10 @@
 @echo off
-TITLE Press Enter to Continue
+TITLE Press Enter to Continue v.1.1
 color 0a
 :menu
 cls
 echo.
-echo Press Enter to Continue v.1.0
+echo Press Enter to Continue v.1.1
 echo.
 echo 1) Start
 echo 2) Load Save
@@ -26,7 +26,6 @@ set /p money=
 set /p xp=
 set /p xpcap=
 set /p skill=
-set /p enemy=
 set /p enskill=
 )
 cls
@@ -43,7 +42,6 @@ echo %money%
 echo %xp%
 echo %xpcap%
 echo %skill%
-echo %enemy%
 echo %enskill%
 ) > save.sav
 cls
@@ -60,7 +58,6 @@ set money=50
 set xp=0
 set xpcap=10
 set skill=5
-set enemy=Damn Slime
 set enskill=15
 goto start
 
@@ -114,9 +111,9 @@ echo Choose a dungeon
 echo ----------------
 echo 1) Levels 1 - 5
 echo 2) Levels 6 - 10
-echo 3) Levels 11 - 20 (NOT FINISHED)
-echo 4) Levels 21 - 50 (NOT FINISHED)
-echo 5) Levels 51+ (NOT FINISHED)
+echo 3) Levels 11 - 20
+echo 4) Levels 21 - 50
+echo 5) Levels 51+
 echo a) Go back
 echo.
 set /p f=Dungeon 
@@ -130,6 +127,7 @@ if %f% == a goto home
 goto dungeonlist
 
 :dungeon1
+set enemy=Damn Slime
 cls
 echo.
 echo User: %name%     Lvl: %level%     Money: $%money%
@@ -154,15 +152,15 @@ goto dungeon1
 
 :dungeon2
 if %level% LSS 6 goto nolvl
-set /a enemy=Goblin
-set /a enskill=250
+set /a enskill=%enskill% + 50
 cls
+set enemy=Goblin
 echo.
 echo User: %name%     Lvl: %level%     Money: $%money%
 echo.
 echo %xp%/%xpcap%     Skill: %skill%
 echo -------------------------------------------------
-echo DUNGEON ONE
+echo DUNGEON TWO
 echo -------------------------------------------------
 echo Enemy: %enemy%
 echo Skill: %enskill%
@@ -179,25 +177,82 @@ if %f% == 3 goto run
 goto dungeon2
 
 :dungeon3
+if %level% LSS 11 goto nolvl
+set /a enskill=%enskill% + 100
 cls
+set enemy=Giant Golem
 echo.
-echo I SAID IT WASN'T FINISHED YET, DIDN'T I?
-pause >nul
-goto home
+echo User: %name%     Lvl: %level%     Money: $%money%
+echo.
+echo %xp%/%xpcap%     Skill: %skill%
+echo -------------------------------------------------
+echo DUNGEON THREE
+echo -------------------------------------------------
+echo Enemy: %enemy%
+echo Skill: %enskill%
+echo -------------------------------------------------
+echo 1) Attack
+echo 2) Defend
+echo 3) Run
+echo.
+set /p f=You: 
+
+if %f% == 1 goto attack
+if %f% == 2 goto defend
+if %f% == 3 goto run
+goto dungeon3
 
 :dungeon4
+if %level% LSS 21 goto nolvl
+set /a enskill=%enskill% + 500
 cls
+set enemy=Wraith
 echo.
-echo I SAID IT WASN'T FINISHED YET, DIDN'T I?
-pause >nul
-goto home
+echo User: %name%     Lvl: %level%     Money: $%money%
+echo.
+echo %xp%/%xpcap%     Skill: %skill%
+echo -------------------------------------------------
+echo DUNGEON FOUR
+echo -------------------------------------------------
+echo Enemy: %enemy%
+echo Skill: %enskill%
+echo -------------------------------------------------
+echo 1) Attack
+echo 2) Defend
+echo 3) Run
+echo.
+set /p f=You: 
+
+if %f% == 1 goto attack
+if %f% == 2 goto defend
+if %f% == 3 goto run
+goto dungeon4
 
 :dungeon5
+if %level% LSS 51 goto nolvl
+set /a enskill=%enskill% + 1500
 cls
+set enemy=Great Dragon
 echo.
-echo I SAID IT WASN'T FINISHED YET, DIDN'T I?
-pause >nul
-goto home
+echo User: %name%     Lvl: %level%     Money: $%money%
+echo.
+echo %xp%/%xpcap%     Skill: %skill%
+echo -------------------------------------------------
+echo DUNGEON FIVE
+echo -------------------------------------------------
+echo Enemy: %enemy%
+echo Skill: %enskill%
+echo -------------------------------------------------
+echo 1) Attack
+echo 2) Defend
+echo 3) Run
+echo.
+set /p f=You: 
+
+if %f% == 1 goto attack
+if %f% == 2 goto defend
+if %f% == 3 goto run
+goto dungeon5
 
 ::all possibilities in a fight
 
@@ -306,7 +361,8 @@ echo.
 echo 1) Lesser Skill Capsule     $10     Lvl: 1
 echo 2) Normal Skill Capsule     $50     Lvl: 5
 echo 3) Greater Skill Capsule    $100    Lvl: 10
-echo 4) Exit
+echo 4) 2 Skill Multiplier       $5000   Lvl: 50
+echo 5) Exit
 echo.
 set /p f=You: 
 
@@ -316,7 +372,8 @@ if %f% == b goto shop2
 if %f% == 1 goto buy1.1
 if %f% == 2 goto buy2.1
 if %f% == 3 goto buy3.1
-if %f% == 4 goto home
+if %f% == 4 goto buy4.1
+if %f% == 5 goto home
 goto shop1
 
 :shop2
@@ -331,10 +388,11 @@ echo Here you can find items to boost yourself.
 echo -------------------------------------------------
 echo [a) Skill][b) XP]
 echo.
-echo 1) Lesser XP Boost   $100     Lvl: 10
-echo 2) Normal XP Boost   $500     Lvl: 50
-echo 3) Greater XP Boost  $1500    Lvl: 150
-echo 4) Exit
+echo 1) Lesser XP Boost   $100     Lvl: 1
+echo 2) Normal XP Boost   $500     Lvl: 5
+echo 3) Greater XP Boost  $1500    Lvl: 10
+echo 4) 2 XP Multiplier   $5000    Lvl: 50
+echo 5) Exit
 echo.
 set /p f=You: 
 
@@ -344,7 +402,8 @@ if %f% == b goto inshop2
 if %f% == 1 goto buy1.2
 if %f% == 2 goto buy2.2
 if %f% == 3 goto buy3.2
-if %f% == 4 goto home
+if %f% == 4 goto buy4.2
+if %f% == 5 goto home
 goto shop2
 
 :inshop1
@@ -394,9 +453,20 @@ echo Greater Skill Capsule purchased!
 pause >nul
 goto shop1
 
+:buy4.1
+if %money% LSS 5000 goto nobuy
+if %money% LSS 50 goto nobuy
+set /a money=%money% - 5000
+set /a skill=%skill% * 2
+cls
+echo.
+echo 2 Skill Multiplier purchased!
+pause >nul
+goto shop1
+
 :buy1.2
 if %money% LSS 100 goto nobuy
-if %level% LSS 10 goto nobuy
+if %level% LSS 1 goto nobuy
 set /a money=%money% - 100
 set /a xp=%xp% + 50
 cls
@@ -407,7 +477,7 @@ goto shop2
 
 :buy2.2
 if %money% LSS 500 goto nobuy
-if %level% LSS 50 goto nobuy
+if %level% LSS 5 goto nobuy
 set /a money=%money% - 500
 set /a xp=%xp% + 350
 cls
@@ -418,12 +488,23 @@ goto shop2
 
 :buy3.2
 if %money% LSS 1500 goto nobuy
-if %level% LSS 150 goto nobuy
+if %level% LSS 10 goto nobuy
 set /a money=%money% - 1500
 set /a xp=%xp% + 1000
 cls
 echo.
 echo Greater XP Boost purchased!
+pause >nul
+goto shop2
+
+:buy4.2
+if %money% LSS 5000 goto nobuy
+if %level% LSS 50 goto nobuy
+set /a money=%money% - 5000
+set /a xp=%xp% * 2
+cls
+echo.
+echo 2 XP Multiplier purchased!
 pause >nul
 goto shop2
 
@@ -438,6 +519,12 @@ goto shop1
 cls
 echo.
 echo Patch Notes
+echo.
+echo v.1.1
+echo Changes to enemy skill gain after each win
+echo All dungeons finished
+echo Added 2 new items (2 Level Multiplier, 2 XP Multiplier)
+echo Adjusted the level requirements of XP items
 echo.
 echo v.1.0
 echo First release of game.
