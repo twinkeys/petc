@@ -369,10 +369,10 @@ set /p f=You:
 if %f% == a goto inshop1
 if %f% == b goto shop2
 
-if %f% == 1 goto buy1.1
-if %f% == 2 goto buy2.1
-if %f% == 3 goto buy3.1
-if %f% == 4 goto buy4.1
+if %f% == 1 goto desc1.1
+if %f% == 2 goto desc2.1
+if %f% == 3 goto desc3.1
+if %f% == 4 goto desc4.1
 if %f% == 5 goto home
 goto shop1
 
@@ -399,10 +399,10 @@ set /p f=You:
 if %f% == a goto shop1
 if %f% == b goto inshop2
 
-if %f% == 1 goto buy1.2
-if %f% == 2 goto buy2.2
-if %f% == 3 goto buy3.2
-if %f% == 4 goto buy4.2
+if %f% == 1 goto desc1.2
+if %f% == 2 goto desc2.2
+if %f% == 3 goto desc3.2
+if %f% == 4 goto desc4.2
 if %f% == 5 goto home
 goto shop2
 
@@ -655,10 +655,10 @@ echo.
 echo Patch Notes
 echo.
 echo v.1.2
-echo Reduced starting money from 50 > 10
-echo Increased starting xp from 10 > 30
-echo Changed Dungeon 3 enemy name. Wraith > Wraith King
-echo Changed new items' names. 2 Level Multiplier, 2 XP Multiplier > 2x Level Multiplier, 2x XP Multiplier
+echo Reduced starting money from 50 to 10
+echo Increased starting xp from 10 to 30
+echo Changed Dungeon 3 enemy name. Wraith to Wraith King
+echo Changed new items' names. 2 Level Multiplier, 2 XP Multiplier to 2x Level Multiplier, 2x XP Multiplier
 echo Added item descriptions
 echo.
 echo v.1.1
